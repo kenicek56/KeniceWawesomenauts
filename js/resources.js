@@ -13,7 +13,7 @@ game.resources = [
 	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},
 	 */
 	 // loads the map!
-	 {name: "level01", type: "tmx", src: "data/map/test.tmx"},
+	 {name: "level01", type: "tmx", src: "data/map/untitled.tmx"},
 
 	/* Maps. 
 	 * @example
