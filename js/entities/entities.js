@@ -19,8 +19,12 @@ game.PlayerEntity = me.Entity.extend({
 		}]);
 		//setting the velocity
 		this.body.setVelocity(5, 20);
+
+		//makes the player stand in idle position
 		this.renderable.addAnimation("idle" , [78]);
+		//makes the playeer walk in a cool animated way
 		this.renderable.addAnimation("walk", [117, 118 , 119 , 120 , 121 , 122 , 123 , 124 , 125], 80);
+		//when the player is not moving he is idle
 		this.renderable.setCurrentAnimation("idle");
 	},
 
@@ -39,19 +43,21 @@ game.PlayerEntity = me.Entity.extend({
 			this.body.vel.x = 0; 
 		}
 
-		if(this.body.vel.x !== 0){
+		if(this.body.vel.x !== 0) {
+
+		// states tat if the right key is pressed he is walkig 	
 		if(!this.renderable.isCurrentAnimation("walk")){
 			this.renderable.setCurrentAnimation("walk");
 	}
 }
-
+// if he isnt walking then he is idle
        else {
 
 	this.renderable.setCurrentAnimation("idle");
 }
 		//updating the game
 		this.body.update(delta);
-
+// udated the player
 		this._super(me.Entity, "update" , [delta]);
 		return true;
 	}
