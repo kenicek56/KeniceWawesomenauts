@@ -85,7 +85,7 @@ if(me.input.isKeyPressed("attack")){
 		}
 
 
-
+//checks the collision 
 	me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//updating the game
 		this.body.update(delta);
