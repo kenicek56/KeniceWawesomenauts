@@ -19,6 +19,7 @@ game.PlayerEntity = me.Entity.extend({
 		}]);
 		//setting the velocity
 		this.body.setVelocity(5, 20);
+		this.facing = "right";
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 
 		//makes the player stand in idle position
@@ -38,18 +39,20 @@ game.PlayerEntity = me.Entity.extend({
 			//setVelocity() and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement look smooth
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			this.facing = "right";
 			this.flipX(true);
 
 			//if other key is pressed it wont work
 		}
 		 else if (me.input.isKeyPressed("left")){
+		 	this.facing = "left";
         	this.body.vel.x -=this.body.accel.x * me.timer.tick;
 			this.flipX(false);
 		 else {
 			this.body.vel.x = 0; 
 		}
 
-		if(me.input.isKeyPressed("jump") && !this.jumping && !this.falling) {
+		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling) {
           this.jumping = true;
           this.body.vel.y -= this.body.accel.y * me.timer.tick;
     }
@@ -89,13 +92,29 @@ if(me.input.isKeyPressed("attack")){
 	this.renderable.setAnimationFrame();
 	}
 }
-
+        me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//updating the game
 		this.body.update(delta);
 // udated the player
 //reaches to the constructor of Entity
 		this._super(me.Entity, "update" , [delta]);
 		return true;
+		collideHandler: function(response) {
+		if(response.b.type==='EnemyBaseEntity') {
+			var ydif = this.pos.y - response.b.pos.y;
+			var xdif = this.pos.x - response.b.pos.x;
+			
+			console.log("xdif " + xdif + " ydif " + ydif);
+
+			if(xdif>-35 && this.facing==='right' && (xdif<0)) {
+				this.body.vel.x = 0;
+				this.pos.x = this.pos.x -1;
+			}else if(xdif<70 && this.facing==='left' && xdif>0) {
+				this.body.vel.x = 0;
+				this.pos.x = this.pos.x +1;
+
+			}
+		}
 	}
 });
 
