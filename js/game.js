@@ -40,6 +40,7 @@ var game = {
 
 	// Run on game resources loaded.
 	"loaded" : function () {
+		// places my players and bases on the screen.
             me.pool.register("player", game.PlayerEntity, true);
             me.pool.register("PlayerBase", game.PlayerBaseEntity);
             me.pool.register("EnemyBase", game.EnemyBaseEntity);

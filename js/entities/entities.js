@@ -88,7 +88,7 @@ game.PlayerBaseEntity = me.Entity.extend ({
 		this.body.onCollision = this.onCollision.bind(this);
 // declares what type of entity
 		this.type = "PlayerBaseEntity";
-
+// classes that animate my bases
 		this.renderable.addAnimation("idle", [0]);
 		this.renderable.addAnimation("broken", [1]);
 		this.renderable.setCurrentAnimation("idle");
@@ -134,13 +134,14 @@ game.EnemyBaseEntity = me.Entity.extend ({
 		this.body.onCollision = this.onCollision.bind(this);
 
 		this.type = "EnemyBaseEntity";
-
+/// classses that animate my base
 		this.renderable.addAnimation("idle" , [0]);
 		this.renderable.addAnimation("broken" , [1]);
 		this.renderable.setCurrentAnimation("idle");
 	},
 
 	update:function(delta) {
+		// if the halth is less or = to 0 it will show the animated base being destroyed
            if(this.health<=0) {
            	this.broken = true;
            	this.renderable.setCurrentAnimation("broken");
