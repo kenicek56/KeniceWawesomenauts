@@ -42,11 +42,20 @@ game.PlayerEntity = me.Entity.extend({
 
 			//if other key is pressed it wont work
 		}
+		 else if (me.input.isKeyPressed("left")){
+        	this.body.vel.x -=this.body.accel.x * me.timer.tick;
+			this.flipX(false);
 		 else {
 			this.body.vel.x = 0; 
 		}
 
+		if(me.input.isKeyPressed("jump") && !this.jumping && !this.falling) {
+          this.jumping = true;
+          this.body.vel.y -= this.body.accel.y * me.timer.tick;
+    }
+
 		if(this.body.vel.x !== 0) {
+
 
 			if(me.input.isKeyPressed("attack")){
 				if(!this.renderable.isCurrentAnimation("attack")){
@@ -102,7 +111,7 @@ game.PlayerBaseEntity = me.Entity.extend ({
              spriteheight: "100",
              getShape: function() {
              	//setting the rectangle thats for the tower
-             	return (new me.Rect(0, 0, 100, 100)).toPolygon();
+             	return (new me.Rect(0, 0, 100, 80)).toPolygon();
              }
 		}]);
         //the health of the power .. if you hit it more than 10 times , then it will blow up
@@ -149,7 +158,7 @@ game.EnemyBaseEntity = me.Entity.extend ({
              spriteheight: "100",
              getShape: function() {
              	//setting the rectangle thats for the tower
-             	return (new me.Rect(0, 0, 100, 100)).toPolygon();
+             	return (new me.Rect(0, 0, 100, 80)).toPolygon();
              }
 		}]);
         //the health of the power .. if you hit it more than 10 times , then it will blow up
