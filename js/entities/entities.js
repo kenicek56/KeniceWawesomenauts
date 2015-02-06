@@ -58,37 +58,43 @@ game.PlayerEntity = me.Entity.extend({
 		//updating the game
 		this.body.update(delta);
 // udated the player
+//reaches to the constructor of Entity
 		this._super(me.Entity, "update" , [delta]);
 		return true;
 	}
 });
 
-
+// settings for the players base
 game.PlayerBaseEntity = me.Entity.extend ({
 	init : function(x, y, settings) {
 		this._super(me.Entity, 'init', [x, y, {
+			//adding the tower image , and setting its size
              image: "tower",
              width: 100,
              height: 100,
              spritewidth: "100",
              spriteheight: "100",
              getShape: function() {
+             	//setting the rectangle thats for the tower
              	return (new me.Rect(0, 0, 100, 100)).toPolygon();
              }
 		}]);
-
+        //the health of the power .. if you hit it more than 10 times , then it will blow up
 		this.broken = false;
 		this.health = 10;
 		this.alwaysUpdate = true;
+		// ,akes the tower colidable
 		this.body.onCollision = this.onCollision.bind(this);
-
+// declares what type of entity
 		this.type = "PlayerBaseEntity";
 	},
 
 	update:function() {
+		//the tower when it has no hits yet , (health is at 0 )
            if(this.health<=0) {
            	this.broken = true;
            }
+           // updates when or if the base is hit
            this._super(me.Entity, "update", [delta]);
 	},
 
@@ -98,20 +104,22 @@ game.PlayerBaseEntity = me.Entity.extend ({
 
 });
 
-
+//setting for the enemy base
 game.EnemyBaseEntity = me.Entity.extend ({
 	init : function(x, y, settings) {
 		this._super(me.Entity, 'init', [x, y, {
+             //adding the tower image , and setting its size
              image: "tower",
              width: 100,
              height: 100,
              spritewidth: "100",
              spriteheight: "100",
              getShape: function() {
+             	//setting the rectangle thats for the tower
              	return (new me.Rect(0, 0, 100, 100)).toPolygon();
              }
 		}]);
-
+        //the health of the power .. if you hit it more than 10 times , then it will blow up
 		this.broken = false;
 		this.health = 10;
 		this.alwaysUpdate = true;
