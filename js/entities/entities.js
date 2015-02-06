@@ -105,15 +105,17 @@ if (ydif<-40 && xdif< 70 && xdif>-35){
 this.body.falling = false;
 this.body.vel.y = -1;
 }
-
+//helps the player step on the correct level of the floor .
 			else if(xdif>-35 && this.facing==='right' && (xdif<0 && ydif>-0)) {
 				this.body.vel.x = 0;
 				this.pos.x = this.pos.x -1;
+				//stops player from going through from the left
 			}else if(xdif<70 && this.facing==='left' && xdif>0) {
 				this.body.vel.x = 0;
 				this.pos.x = this.pos.x +1;
 
 			}
+			//stops player from going through from the right
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit>= 1000){
 				this.lastHit = this.now;
 				response.b.loseHealth();
