@@ -113,7 +113,7 @@ if(me.input.isKeyPressed("attack")){
 				this.body.vel.x = 0;
 				this.pos.x = this.pos.x +1;
 
-			}
+ //			}
 		}
 	}
 });
