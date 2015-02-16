@@ -146,8 +146,8 @@ game.PlayerBaseEntity = me.Entity.extend({
         this.health = 10;
         this.alwaysUpdate = true;
         this.body.onCollision = this.onCollision.bind(this);
+        this.type = "PlayerBase";
         
-        this.type = "PlayerBaseEntity";
         //not burning animation
         this.renderable.addAnimation("idle", [0]);
         //broken tower
@@ -165,6 +165,10 @@ game.PlayerBaseEntity = me.Entity.extend({
         
         this._super(me.Entity, "update", [delta]);
         return true;
+    },
+
+    loseHealth: function(damage){
+        this.health = this.health - damage;
     },
     
     onCollision: function(){
@@ -240,6 +244,13 @@ game.EnemyCreep = me.Entity.extend({
        
         this.health = 10;
         this.alwaysUpdate = true;
+        //this lets us know if the enemy is attacking
+        this.attacking = false;
+        // this keeps track of when our creep last attacked anything
+        this.lastAttacking = new Date().getTime();
+        // keeps track of the last time our creep hit anything
+        this.lastHit = new Date().getTime();
+        this.now = new Date().getTime();
         this.body.setVelocity(3, 20);
         this.type = "EnemyCreep";
         
@@ -249,15 +260,33 @@ game.EnemyCreep = me.Entity.extend({
     },
     
     update: function(delta){
+        this.now = new Date().getTime();
 // make sthe creep move
         this.body.vel.x-= this.body.accel.x * me.timer.tick;
+
+me.collision.check(this, true, this.collideHandler.bind(this), true);
+
+
 //updates the creeps movements 
         this.body.update(delta);
 
          this._super(me.Entity, "update", [delta]);
 
         return true;
+    },
+collideHandler: function(response){
+    if(response.b.type==='PlayerBase'){
+        this.attacking=true;
+       // this.lastAttacking=this.now;
+        this.body.vel.x = 0;
+        this.pos.x = this.pos.x + 1;
+        if((this.now-this.lastHit >= 1000)){
+            this.lastHit = this.now;
+            response.b.loseHealth(1);
+        }
     }
+}
+
 });
 
 game.GameManager = Object.extend({
