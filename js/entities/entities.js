@@ -279,9 +279,14 @@ collideHandler: function(response){
         this.attacking=true;
        // this.lastAttacking=this.now;
         this.body.vel.x = 0;
+        //krrps moving the creep to the right to maintain its position
         this.pos.x = this.pos.x + 1;
+        //checks that it has been atb least 1 second since this creep hit a base
         if((this.now-this.lastHit >= 1000)){
+           //updates the lasthit timer
             this.lastHit = this.now;
+            //makes the player base call its losehealth function and passes it a
+            // damage of 1
             response.b.loseHealth(1);
         }
     }
