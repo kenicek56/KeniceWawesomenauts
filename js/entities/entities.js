@@ -10,7 +10,9 @@ game.PlayerEntity = me.Entity.extend({
                   return(new me.Rect(0, 0, 64, 64)).toPolygon();
               }
         }]);
-    
+
+    this.type = "PlayerEntity";
+    this.health = 20;
     // move 5 units to the right
     //represent our current position
     // need to add collision so player won't fall
@@ -97,6 +99,11 @@ game.PlayerEntity = me.Entity.extend({
         this._super(me.Entity, "update", [delta]);
         return true;
     },
+
+    loseHealth: function(damage){
+        this.health = this.health - damage;
+        console.log(this.health);
+    },    
     
     collideHandler: function(response){
         if(response.b.type === 'EnemyBaseEntity'){
@@ -283,6 +290,25 @@ collideHandler: function(response){
         this.pos.x = this.pos.x + 1;
         //checks that it has been atb least 1 second since this creep hit a base
         if((this.now-this.lastHit >= 1000)){
+           //updates the lasthit timer
+            this.lastHit = this.now;
+            //makes the player call its losehealth function and passes it a
+            // damage of 1
+            response.b.loseHealth(1);
+        }
+    }else if (response.b.type==='PlayerEntity'){
+        var xdif = this.pos.x - response.b.pos.x;
+         this.attacking=true;
+      
+        //keeps moving the creep to the right to maintain its position
+        if(xdif>0){
+        console.log(xdif);
+        // this.lastAttacking=this.now;
+        this.body.vel.x = 0;
+        this.pos.x = this.pos.x + 1;
+        }
+        //checks that it has been atb least 1 second since this creep hit a base
+        if((this.now-this.lastHit >= 1000 && xdif>0)){
            //updates the lasthit timer
             this.lastHit = this.now;
             //makes the player base call its losehealth function and passes it a
