@@ -127,8 +127,38 @@ game.PlayerEntity = me.Entity.extend({
             
             //if we're attacking by making contact with the base, lose health
             if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= 300){
+                console.log("tower Hit");
                 this.lastHit = this.now;
                 response.b.loseHealth();
+            }
+        }else if(response.b.type==='EnemyCreep') {
+            // keeps track of the creeps x and y differences when attacking
+            var xdif = this.pos.x - response.b.pos.x;
+            var ydif = this.pos.y - response.b.pos.y;
+            // keeps our player from going threw the creeps.
+            if(xdif>0){
+              this.pos.x = this.pos.x + 1;
+            // keeps track of where my player is facing.
+            if(this.facing==="left") {
+                 this.body.vel.x = 0;
+              }            
+            }
+            else{
+                this.pos.x = this.pos.x - 1;
+                if(this.facing==="right"){
+                    this.body.vel.x = 0;
+                }
+            }
+
+            if(this.renderable.isCurrentAnimation("attack")  && this.now-this.lastHit >= 300
+                 // if character is to the right of the creep and im facing left than i can attack it
+              // if notit wont work.
+              //or i need my character to be the left of the creep and facing to its right.
+                    && (Math.abs(ydif) <=40) &&
+                        (((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
+                        ){
+                this.lastHit = this.now;
+                response.b.loseHealth(1);
             }
         }
     }    
@@ -265,8 +295,16 @@ game.EnemyCreep = me.Entity.extend({
         this.renderable.setCurrentAnimation("walk");
         
     },
+
+    loseHealth: function(damage) {
+        this.health = this.health - damage;
+    },
     
     update: function(delta){
+        if(this.health <=0) {
+            me.game.world.removeChild(this);
+        }
+
         this.now = new Date().getTime();
 // make sthe creep move
         this.body.vel.x-= this.body.accel.x * me.timer.tick;
