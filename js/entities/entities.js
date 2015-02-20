@@ -12,16 +12,17 @@ game.PlayerEntity = me.Entity.extend({
         }]);
 
     this.type = "PlayerEntity";
-    this.health = 20;
+    this.health = game.data.playerHealth;
     // move 5 units to the right
     //represent our current position
     // need to add collision so player won't fall
-    this.body.setVelocity(5, 20); // 20 make y location has change 
+    this.body.setVelocity(game.data.playerMoveSpeed, 20); // 20 make y location has change 
     
     this.facing = "right";
     //keep track of what time it is for the date
     this.now = new Date().getTime();
     this.lastHit = this.now;
+    this.dead = false;
     this.lastAttack = new Date().getTime(); //haven't use the attack variable yet   
     
     //no matter the player screen is going to follow him
@@ -43,6 +44,13 @@ game.PlayerEntity = me.Entity.extend({
     //delta changing time it happens
     update: function(delta){
         this.now = new Date().getTime();
+        if(this.health <=0) {
+            this.dead = true;
+            this.pos.x = 10;
+            this.pos.y = 0;
+            this.health = game.data.playerHealth;
+        }
+
         //press the right button, set to walk
         if(me.input.isKeyPressed("right")){
             //move from the current position
@@ -126,10 +134,10 @@ game.PlayerEntity = me.Entity.extend({
             }
             
             //if we're attacking by making contact with the base, lose health
-            if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= 300){
+            if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= game.data.playerAttackTimer){
                 console.log("tower Hit");
                 this.lastHit = this.now;
-                response.b.loseHealth();
+                response.b.loseHealth(game.data.playerAttack);
             }
         }else if(response.b.type==='EnemyCreep') {
             // keeps track of the creeps x and y differences when attacking
@@ -150,7 +158,7 @@ game.PlayerEntity = me.Entity.extend({
                 }
             }
 
-            if(this.renderable.isCurrentAnimation("attack")  && this.now-this.lastHit >= 300
+            if(this.renderable.isCurrentAnimation("attack")  && this.now-this.lastHit >= game.data.playerAttackTimer
                  // if character is to the right of the creep and im facing left than i can attack it
               // if notit wont work.
               //or i need my character to be the left of the creep and facing to its right.
@@ -158,7 +166,7 @@ game.PlayerEntity = me.Entity.extend({
                         (((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
                         ){
                 this.lastHit = this.now;
-                response.b.loseHealth(1);
+                response.b.loseHealth(game.data.playerAttack);
             }
         }
     }    
@@ -180,7 +188,7 @@ game.PlayerBaseEntity = me.Entity.extend({
              }
         }]);
         this.broken = false;
-        this.health = 10;
+        this.health = game.data.playerBaseHealth;
         this.alwaysUpdate = true;
         this.body.onCollision = this.onCollision.bind(this);
         this.type = "PlayerBase";
@@ -230,7 +238,7 @@ game.EnemyBaseEntity = me.Entity.extend({
              }
         }])
         this.broken = false;
-        this.health = 10;
+        this.health = game.data.EnemyBaseHealth;
         this.alwaysUpdate = true;
         this.body.onCollision = this.onCollision.bind(this);
         
@@ -279,7 +287,7 @@ game.EnemyCreep = me.Entity.extend({
         
      }]);
        
-        this.health = 10;
+        this.health = game.data.EnemyCreepHealth;
         this.alwaysUpdate = true;
         //this lets us know if the enemy is attacking
         this.attacking = false;
@@ -332,7 +340,7 @@ collideHandler: function(response){
             this.lastHit = this.now;
             //makes the player call its losehealth function and passes it a
             // damage of 1
-            response.b.loseHealth(1);
+            response.b.loseHealth(game.data.EnemyCreepAttack);
         }
     }else if (response.b.type==='PlayerEntity'){
         var xdif = this.pos.x - response.b.pos.x;
@@ -351,7 +359,7 @@ collideHandler: function(response){
             this.lastHit = this.now;
             //makes the player base call its losehealth function and passes it a
             // damage of 1
-            response.b.loseHealth(1);
+            response.b.loseHealth(game.data.EnemyCreepAttack);
         }
     }
 }
