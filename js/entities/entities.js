@@ -46,9 +46,6 @@ game.PlayerEntity = me.Entity.extend({
         this.now = new Date().getTime();
         if(this.health <=0) {
             this.dead = true;
-            this.pos.x = 10;
-            this.pos.y = 0;
-            this.health = game.data.playerHealth;
         }
 
         //press the right button, set to walk
@@ -125,12 +122,12 @@ game.PlayerEntity = me.Entity.extend({
             //make player moves right
             else if(xdif > -30 && this.facing === 'right'&& (xdif < 0)){
                 this.body.vel.x = 0;
-                this.pos.x = this.pos.x -1;
+                //this.pos.x = this.pos.x -1;
             }
             // coming from the right side and prevent from overlapping
             else if(xdif < 70 && this.facing === 'left' && xdif > 0){
                 this.body.vel.x = 0;
-                this.pos.x = this.pos.x + 1; 
+                //this.pos.x = this.pos.x + 1; 
             }
             
             //if we're attacking by making contact with the base, lose health
@@ -145,14 +142,14 @@ game.PlayerEntity = me.Entity.extend({
             var ydif = this.pos.y - response.b.pos.y;
             // keeps our player from going threw the creeps.
             if(xdif>0){
-              this.pos.x = this.pos.x + 1;
+             // this.pos.x = this.pos.x + 1;
             // keeps track of where my player is facing.
             if(this.facing==="left") {
                  this.body.vel.x = 0;
               }            
             }
             else{
-                this.pos.x = this.pos.x - 1;
+                //this.pos.x = this.pos.x - 1;
                 if(this.facing==="right"){
                     this.body.vel.x = 0;
                 }
@@ -374,6 +371,12 @@ this.alwaysUpdate = true;
 },
 update: function(){
 this.now = new Date().getTime();
+
+if(game.data.player.dead){
+     me.game.world.removeChild(game.data.player);
+     me.state.current().resetPlayer(10, 0);
+               }
+
 
 if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
     this.lastCreep = this.now;

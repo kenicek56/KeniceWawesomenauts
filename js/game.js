@@ -1,27 +1,26 @@
-
-/* Game namespace */
+/* Game namspace */
 var game = {
 
 	// an object where to store game information
 	data : {
 		// score
 		score : 0,
-		EnemyBaseHealth:10,
-		PlayerBaseHealth:10,
-		EnemyCreepHealth:10,
-		playerHealth:10,
-		EnemyCreepAttack:1,
-		playerAttack:1,
+		EnemyBaseHealth: 10,
+		PlayerBaseHealth: 10,
+		EnemyCreepHealth: 10,
+		playerHealth: 10,
+		EnemyCreepAttack: 1,
+		playerAttack: 1,
 		//24
 		//orcBaseDamage:10,
 		//orcBaseHealth:100,
 		//orcBaseDefense: 0,
-		playerAttackTimer:300,
-		creepAttackTimer:300,
+		playerAttackTimer: 300,
+		creepAttackTimer: 300,
 		playerMoveSpeed: 5,
-		creepMoveSpeed:5,
-		gameManager:"",
-		player:""
+		creepMoveSpeed: 5,
+		gameManager: "",
+		player: ""
 	},
 	
 	// hi
