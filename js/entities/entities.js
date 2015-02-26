@@ -22,6 +22,7 @@ game.PlayerEntity = me.Entity.extend({
     //keep track of what time it is for the date
     this.now = new Date().getTime();
     this.lastHit = this.now;
+    this.attack = game.data.playerAttack;
     this.dead = false;
     this.lastAttack = new Date().getTime(); //haven't use the attack variable yet   
     
@@ -107,8 +108,7 @@ game.PlayerEntity = me.Entity.extend({
 
     loseHealth: function(damage){
         this.health = this.health - damage;
-        console.log(this.health);
-    },    
+        },    
     
     collideHandler: function(response){
         if(response.b.type === 'EnemyBaseEntity'){
@@ -163,10 +163,18 @@ game.PlayerEntity = me.Entity.extend({
                         (((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
                         ){
                 this.lastHit = this.now;
+
+            if(response.b.health <= game.data.playerAttack) {
+                //adds one gold for a creep kill
+                game.data.gold += 1;
+                console.log("Current gold: " + game.data.gold);
+            }
                 response.b.loseHealth(game.data.playerAttack);
             }
-        }
-    }    
+            }
+            }
+    
+       
 });
 
 
@@ -185,7 +193,7 @@ game.PlayerBaseEntity = me.Entity.extend({
              }
         }]);
         this.broken = false;
-        this.health = game.data.playerBaseHealth;
+        this.health = game.data.PlayerBaseHealth;
         this.alwaysUpdate = true;
         this.body.onCollision = this.onCollision.bind(this);
         this.type = "PlayerBase";
@@ -367,6 +375,7 @@ game.GameManager = Object.extend({
 init: function(x, y, settings){
 this.now = new Date().getTime();
 this.lastCreep = new Date().getTime();
+this.paused = false;
 this.alwaysUpdate = true;
 },
 update: function(){
@@ -377,6 +386,11 @@ if(game.data.player.dead){
      me.state.current().resetPlayer(10, 0);
                }
 
+if(Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)){
+    game.data.gold += 1;
+    console.log("Current gold: " + game.data.gold);
+    
+    }
 
 if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
     this.lastCreep = this.now;
