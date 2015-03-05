@@ -1,15 +1,16 @@
 game.PlayerEntity = me.Entity.extend({
     init: function(x, y, settings){
-        this.setSuper();
+        this.setSuper(x, y);
         this.setPlayerTimers();
         this.setAttributes();
+         this.addAnimation();
+    
         this.type = "PlayerEntity";
         this.setFlags(); 
     //no matter the player screen is going to follow him
     me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     
-    this.addAnimation();
-    
+   
     
     
     //set currentAnimation to idle
@@ -17,7 +18,7 @@ game.PlayerEntity = me.Entity.extend({
     
     },
 
-    setSuper: function() {
+    setSuper: function(x,y) {
        this._super(me.Entity, 'init', [x, y, {
               image: "player",
               width: 64,
@@ -56,7 +57,7 @@ game.PlayerEntity = me.Entity.extend({
         this.attacking = false;
     },
 
-setaddAnimation: function(){
+addAnimation: function(){
     this.renderable.addAnimation("idle", [78]);
     //walk animation on the spritesheet, 8o milisecond between frame
     this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
@@ -67,7 +68,7 @@ setaddAnimation: function(){
     //delta changing time it happens
     update: function(delta){
         this.now = new Date().getTime();
-        this.dead = checkIfDead();
+        this.dead = this.checkIfDead();
         this.checkKeyPressesAndMove();
         this.setAnimation();
         // passing parameters to the collideHandler
@@ -88,8 +89,7 @@ setaddAnimation: function(){
 
     checkKeyPressesAndMove: function(){
         //press the right button, set to walk
-         if(me.input.isKeyPressed("right
-        ")){
+         if(me.input.isKeyPressed("right")){
            this.moveRight();
         }
         
@@ -234,7 +234,7 @@ setaddAnimation: function(){
            return false; 
    },
 
-   hitCreep: function(){
+   hitCreep: function(response){
                        if(response.b.health <= game.data.playerAttack) {
                 //adds one gold for a creep kill
                 game.data.gold += 1;
