@@ -13,6 +13,7 @@ game.EnemyBaseEntity = me.Entity.extend({
              }
         }])
         this.broken = false;
+        game.data.win = false;
         this.health = game.data.EnemyBaseHealth;
         this.alwaysUpdate = true;
         this.body.onCollision = this.onCollision.bind(this);

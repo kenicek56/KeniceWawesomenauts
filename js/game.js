@@ -70,6 +70,7 @@ var game = {
             me.pool.register("EnemyCreep", game.EnemyCreep, true);
 		    me.pool.register("GameManager", game.GameTimerManager);
 		    me.pool.register("HeroDeathManger", game.HeroDeathManger);
+		    me.pool.register("ExperienceManger", game.ExperienceManger);
 		
 
 		    me.state.set(me.state.MENU, new game.TitleScreen());
