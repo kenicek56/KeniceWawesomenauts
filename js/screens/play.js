@@ -12,13 +12,13 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.state.current().resetPlayer(0, 420);
 
 		var gameTimerManager = me.pool.pull("GameTimerManager", 0 , 0, {});
-		me.game.world.addChild(gameTimermanager, 0);
+		me.game.world.addChild(gameTimerManager, 0);
 
-		var heroDeathManger = me.pool.pull("HeroDeathManger", 0 , 0, {});
-		me.game.world.addChild(heroDeathManger, 0);
+		var heroDeathManager = me.pool.pull("HeroDeathManager", 0 , 0, {});
+		me.game.world.addChild(heroDeathManager, 0);
 
-        var experienceManger = me.pool.pull("ExperienceManger", 0 , 0, {});
-		me.game.world.addChild(experienceManger, 0);
+        var experienceManager = me.pool.pull("ExperienceManager", 0 , 0, {});
+		me.game.world.addChild(experienceManager, 0);
 
 		//when clicking right, character moves right
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
