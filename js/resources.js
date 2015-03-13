@@ -7,11 +7,12 @@ game.resources = [
 	 // loads the background tiles 
      {name: "background-tiles", type:"image", src: "data/img/background-tiles.png"},
      // loads the meta-tiles!
-     {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
+      {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
       {name: "player", type:"image", src: "data/img/kenice.png"},
       {name: "tower", type:"image", src: "data/img/tower_round.svg.png"},
-       {name: "creep1", type:"image", src: "data/img/brainmonster.png"},
-       {name: "title-screen", type:"image", src: "data/img/awesomenauts.jpg"},
+      {name: "creep1", type:"image", src: "data/img/brainmonster.png"},
+      {name: "title-screen", type:"image", src: "data/img/awesomenauts.jpg"},
+      {name: "exp-screen", type:"image", src: "data/img/loadpic.png"},
 
 	/* Atlases 
 	 * @example
