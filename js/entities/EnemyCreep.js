@@ -34,6 +34,7 @@ game.EnemyCreep = me.Entity.extend({
 
     loseHealth: function(damage) {
         this.health = this.health - damage;
+        me.audio.play("enemykill");
     },
     
     update: function(delta){

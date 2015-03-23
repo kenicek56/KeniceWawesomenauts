@@ -38,5 +38,6 @@ game.resources = [
 	 * @example
 	 * {name: "example_sfx", type: "audio", src: "data/sfx/"}
 	 */ 
-	 {name: "jump", type: "audio", src: "data/sfx/"}
+	 {name: "jump", type: "audio", src: "data/sfx/"},
+	 {name: "enemykill", type: "audio", src: "data/sfx/"}
 ];
