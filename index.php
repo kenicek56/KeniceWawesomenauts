@@ -15,7 +15,27 @@
 	<body>
 		<!-- Canvas placeholder -->
 		<div id="screen"></div>
+        <!-- builds a form which allows us to add files -->
+        <!--and keeps the elements together -->
+        <form id="input"method ="post">
+              <div class="field">
+              <!--used to change what it says inside of our field-->
+                  <label for"username"> Username</label>
+                  <!-- stops from automatically finishing a users name-->
+                  <input type='text' name='username'vid='username' autocomplete='off'>
+              </div>
+              <!--lets us make a password-->
+              <div class='password'>
+              	<label for='password'>Password</label>
+                <input type='text' name='password' id='password'>
+              </div>
+              <!-- tells us whta it is-->
+              <button type='button' id='register'>Register</button>
+			  <button type='button' id='load'>Load</button>
+			  <button type='button' id='mainmenu'>Main Menu</button>
+		</form>
 
+		
 		<!-- melonJS Library -->
 		<!-- build:js js/app.min.js -->
 		<script type="text/javascript" src="lib/melonJS-1.1.0-min.js"></script>
