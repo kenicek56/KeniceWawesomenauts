@@ -92,6 +92,7 @@ var game = {
 		    me.pool.register("spear", game.SpearThrow, true);
 		    me.pool.register("EnemyHero", game.EnemyHero);
             me.pool.register("minimap", game.MiniMap, true);
+            me.pool.register("miniplayer", game.MiniPlayerLocation, true);
 
 		
 
