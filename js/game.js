@@ -40,7 +40,8 @@ var game = {
 		win: "",
 		pausePos: "",
 		buyscreen: "",
-		buytext: ""
+		buytext: "",
+		minimap: ""
 	},
 	
 	// hi
@@ -88,8 +89,9 @@ var game = {
 		    me.pool.register("HeroDeathManager", game.HeroDeathManager);
 		    me.pool.register("ExperienceManager", game.ExperienceManager);
 		    me.pool.register("SpendGold", game.SpendGold);
-		    me.pool.register("spear", game.SpearThrow);
+		    me.pool.register("spear", game.SpearThrow, true);
 		    me.pool.register("EnemyHero", game.EnemyHero);
+            me.pool.register("minimap", game.MiniMap, true);
 
 		
 
