@@ -140,9 +140,9 @@ addAnimation: function(){
    }
  },
 throwSpear: function() {
-  if(this.lastSpear >= game.data.spearTimer && game.data.ability3 >=0){
+  if((this.now-this.lastSpear) >= game.data.iArrowTimer*1000 && game.data.ability3 > 0){
        this.lastSpear = this.now;
-       var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
+       var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {}, this.facing););
        me.game.world.addChild(spear, 10);
       }
 },
