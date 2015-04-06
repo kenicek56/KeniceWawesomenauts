@@ -7,7 +7,6 @@ game.LoadProfile = me.ScreenObject.extend({
 		document.getElementById("input").style.visibility = "visible";
 		document.getElementById("load").style.visibility = "visible";
 
-		me.audio.playTrack("Awesomenauts-upgradeTune");
 		
 		me.input.unbindKey(me.input.KEY.B);
 		me.input.unbindKey(me.input.KEY.Q);
@@ -37,8 +36,8 @@ game.LoadProfile = me.ScreenObject.extend({
 	 */
 	onDestroyEvent: function() {
 
-		document.getElementById("input").style.visibility = "visible";
-		document.getElementById("load").style.visibility = "visible";
+		document.getElementById("input").style.visibility = "hidden";
+		document.getElementById("load").style.visibility = "hidden";
  
 	}	
 });
