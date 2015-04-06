@@ -5,6 +5,8 @@ var game = {
 	data : {
 		// score
 		score : 0,
+		option1: "",
+		option2: "",
 		EnemyBaseHealth: 1,
 		PlayerBaseHealth: 1,
 		EnemyCreepHealth: 10,
