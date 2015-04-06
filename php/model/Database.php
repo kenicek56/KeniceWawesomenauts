@@ -22,7 +22,7 @@ class Database {
 	}
 	public function openConnection() {
  
-$this->connection = new mysqli($this->host, $this->username, $this->password, $this->database);
+$this->connection = new mysqli($host, $username, $password);
 // to see if the connection was succesful
 // to check if its true or nah
 // connection->connect_error checks to see if there is a connection error.
