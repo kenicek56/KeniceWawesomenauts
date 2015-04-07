@@ -2,12 +2,12 @@ game.MiniMap = me.Entity.extend ({
 init: function(x, y, settings) {
 	this._super(me.Entity, "init", [x, y, {
         image: "minimap",
-        width: 438,
+        width: 439,
         height: 123,
-        spritewidth:"438",
+        spritewidth:"439",
         spriteheight:"123",
         getShape: function() {
-        	return (new me.Rect(0, 0, 438, 123)).toPolygon();
+        	return (new me.Rect(0, 0, 439, 123)).toPolygon();
         }
 	 }]);
   this.floating = true;
