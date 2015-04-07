@@ -64,6 +64,9 @@ addAnimation: function(){
     this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
     //Animation for character attack
     this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72], 80);
+
+    //PUT DEATH ANIMATION BELOW
+
 },
 
     //delta changing time it happens
@@ -84,6 +87,8 @@ addAnimation: function(){
 
     checkIfDead: function(){
         if(this.health <=0) {
+            //SET ANIMATION TO DEATH
+            this.renderable.addAnimation("death", [247, 248, 249, 250, 251, 252], 80);
             return true;
         }
         return false;

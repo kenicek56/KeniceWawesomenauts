@@ -24,7 +24,7 @@ game.EnemyCreep = me.Entity.extend({
         // keeps track of the last time our creep hit anything
         this.lastHit = new Date().getTime();
         this.now = new Date().getTime();
-        this.body.setVelocity(3, 20);
+        this.body.setVelocity(3, 60);
         this.type = "EnemyCreep";
         
         this.renderable.addAnimation("walk", [3, 4, 5], 80);
