@@ -27,9 +27,9 @@
         <form id="input"method ="post">
               <div class="field">
               <!--used to change what it says inside of our field-->
-                  <label for"username"> Username</label>
+                  <label for="username"> Username</label>
                   <!-- stops from automatically finishing a users name-->
-                  <input type='text' name='username'vid='username' autocomplete='off'>
+                  <input type='text' name='username' id='username' autocomplete='off'>
               </div>
               <!--lets us make a password-->
               <div class='password'>
@@ -57,15 +57,16 @@
 		<script type="text/javascript" src="js/entities/entities.js"></script>
 		<script type="text/javascript" src="js/entities/EnemyBaseEntity.js"></script>
 		<script type="text/javascript" src="js/entities/PlayerBaseEntity.js"></script>
-		<script type="text/javascript" src="js/gamemanagers/GameManager.js"></script>
-		<script type="text/javascript" src="js/gamemanagers/GameTimerManager.js"></script>
-		<script type="text/javascript" src="js/gamemanagers/SpendGold.js"></script>
-		<script type="text/javascript" src="js/gamemanagers/HeroDeathManager.js"></script>
+		<script type="text/javascript" src="js/entities/gamemanagers/GameManager.js"></script>
+		<script type="text/javascript" src="js/entities/gamemanagers/GameTimerManager.js"></script>
+		<script type="text/javascript" src="js/entities/gamemanagers/SpendGold.js"></script>
+		<script type="text/javascript" src="js/entities/gamemanagers/HeroDeathManager.js"></script>
 		<script type="text/javascript" src="js/entities/EnemyCreep.js"></script>
 		<script type="text/javascript" src="js/entities/HUD.js"></script>
 		<script type="text/javascript" src="js/entities/SpearThrow.js"></script>
 		<script type="text/javascript" src="js/entities/MiniMap.js"></script>
 		<script type="text/javascript" src="js/entities/MiniPlayerLocation.js"></script>
+		<script type="text/javascript" src="js/entities/EnemyHero.js"></script>
 
 		<script type="text/javascript" src="js/screens/title.js"></script>
 		<script type="text/javascript" src="js/screens/play.js"></script>

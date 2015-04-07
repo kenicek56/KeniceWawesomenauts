@@ -1,7 +1,7 @@
 game.ExperienceManager = Object.extend({
     init: function(x, y, settings){
         this.alwaysUpdate = true;
-        game.gameover = false;
+        this.gameover = false;
 
     },
     update: function(){
@@ -24,7 +24,7 @@ game.ExperienceManager = Object.extend({
             game.data.exp += 1;
         }
             
-            game.gameover = true;
+            this.gameover = true;
             me.save.exp = game.data.exp;
      
             $.ajax({

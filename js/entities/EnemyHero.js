@@ -13,12 +13,12 @@ game.EnemyHero = me.Entity.extend({
 
 		}]);
 
-			
+			this.alwaysUpdate = true;
 			this.body.setVelocity(3, 19);
 
 			this.type = "EnemyHero";
 
-			this.renderable.addAnimation("walk", [144, 145, 146, 147, 148, 149, 150, 151, 152], 80);
+			this.renderable.addAnimation("walk", [144, 145, 146, 147, 148, 149, 150, 151], 80);
 			this.renderable.setCurrentAnimation("walk");
 
 	},

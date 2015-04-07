@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . "/database.php");
+require_once(__DIR__ . "/Database.php");
 //keeps the sessions id constant when you are logged in.
 session_start();
 //everytime the session start is called uponed its gonna regenerate the id
@@ -7,7 +7,7 @@ session_start();
 //prevents highjackers
 session_regenerate_id(true);
 
-$path = '/KeniceWawesomenauts/php/';
+$path = "/KeniceWawesomenauts/php/";
 //information in the mode */
 $host = "localhost";
 $username = "root";

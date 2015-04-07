@@ -1,7 +1,7 @@
 game.MiniPlayerLocation = me.Entity.extend({
 	init: function(x, y, settings) {
 this.settings = settings;
-this.r = s;
+this.r = 5;
 this.diameter = (this.r+2)*2;
 this.anchorPoint = new me.Vector2d(0, 0);
 this.loc = x, y;
@@ -11,10 +11,10 @@ this.settings.spritewidth = this.diameter;
 this.settings = this.diameter;
 this.floating = true;
 this.image = me.video.createCanvas(this.settings.width, this.settings.height);
-var ctx = me.video.render.getContext2d(this.image);
+var ctx = me.video.renderer.getContext2d(this.image);
 
 ctx.fillstyle = "rgba(0, 192, 32, 0, 75)";
-ctx.strokeStyle = :"blue";
+ctx.strokeStyle = "blue";
 ctx.lineWidth = 2;
 
 ctx.arc(this.r + 2, this.r +2, this.r, 0, Math.PI*2);
@@ -25,8 +25,8 @@ var my = this;
 this._super(me.Entity, "init", [x, y, {
     width: 14,
     height: 14,
-    spritewidth: 14,
-    spriteheight: 14,
+    spritewidth: "14",
+    spriteheight: "14",
     getShape: function(){
     	return(new me.Rect(0, 0, 14, 14)).toPolygon();
     }
@@ -34,7 +34,7 @@ this._super(me.Entity, "init", [x, y, {
 
 	},
 
-	draw: function() {
+	draw: function(renderer) {
          this._super(me.Entity, "draw", [renderer]);
          this.floating = true;
          renderer.drawImage(
@@ -44,7 +44,8 @@ this._super(me.Entity, "init", [x, y, {
          	);
 	},
 update: function(){
-this.pos.x = (10 + (game.data.player.pos.x *0.062));
-this.pos.y = (10 + (game.data.player.pos.y *0.06));
+this.pos.x = (10 + (game.data.player.pos.x *0.12));
+this.pos.y = (10 + (game.data.player.pos.y *0.12));
 return true;
+}
 });
