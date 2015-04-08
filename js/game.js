@@ -13,6 +13,7 @@ var game = {
 		playerHealth: 10,
 		EnemyCreepAttack: 1,
 		playerAttack: 1,
+		heroCreep:10,
 		//EnemyHeroHealth: 10,
 		//EnemyHeroAttack:1,
 		//24
@@ -87,6 +88,7 @@ var game = {
             me.pool.register("player", game.PlayerEntity, true);
             me.pool.register("PlayerBase", game.PlayerBaseEntity);
             me.pool.register("EnemyBase", game.EnemyBaseEntity);
+            me.pool.register("PlayerCreep", game.PlayerCreep, true);
             me.pool.register("EnemyCreep", game.EnemyCreep, true);
 		    me.pool.register("GameTimerManager", game.GameTimerManager);
 		    me.pool.register("HeroDeathManager", game.HeroDeathManager);
@@ -96,6 +98,7 @@ var game = {
 		    me.pool.register("EnemyHero", game.EnemyHero, true);
             me.pool.register("minimap", game.MiniMap, true);
             me.pool.register("miniplayer", game.MiniPlayerLocation, true);
+            me.pool.register("heroCreep", game.heroCreep, true);
 
 		
 

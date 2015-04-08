@@ -16,6 +16,9 @@ game.PlayScreen = me.ScreenObject.extend({
 		var enemyHero = me.pool.pull("EnemyHero", 420, 0, {});
 		me.game.world.addChild(enemyHero, 5);
 
+		var heroCreep = me.pool.pull("heroCreep", 420, 0, {});
+		me.game.world.addChild(heroCreep, 5);
+
 		var gameTimerManager = me.pool.pull("GameTimerManager", 0 , 0, {});
 		me.game.world.addChild(gameTimerManager, 0);
 

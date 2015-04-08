@@ -67,6 +67,7 @@
 		<script type="text/javascript" src="js/entities/MiniMap.js"></script>
 		<script type="text/javascript" src="js/entities/MiniPlayerLocation.js"></script>
 		<script type="text/javascript" src="js/entities/EnemyHero.js"></script>
+		<script type="text/javascript" src="js/entities/heroCreep.js"></script>
 
 		<script type="text/javascript" src="js/screens/title.js"></script>
 		<script type="text/javascript" src="js/screens/play.js"></script>

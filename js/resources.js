@@ -19,6 +19,7 @@ game.resources = [
 	  {name: "hero", type:"image", src: "data/img/skeletonDagger.png"},
 	  {name: "spear", type:"image", src: "data/img/spear.png"},
 	  {name: "minimap", type:"image", src: "data/img/miniMap.png"},
+	  {name: "creep2", type:"image", src: "data/img/gloop.png"},
 
 
 	/* Atlases 
