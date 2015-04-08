@@ -14,6 +14,7 @@ var game = {
 		EnemyCreepAttack: 1,
 		playerAttack: 1,
 		heroCreep:10,
+		heroCreepAttack:10,
 		//EnemyHeroHealth: 10,
 		//EnemyHeroAttack:1,
 		//24
